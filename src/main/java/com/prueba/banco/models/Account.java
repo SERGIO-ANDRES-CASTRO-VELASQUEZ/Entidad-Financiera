@@ -14,25 +14,24 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="Cuentas")
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TypeAccount TypeAccount;
+    private TypeAccount typeAccount;
+
 
     @Column(nullable = false, unique = true)
-    private Integer NumberAccount;
+    private Integer numberAccount;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TypeState TypeState;
+    private TypeState typeState;
 
     @Column(nullable = false)
     private Double balance = 0.0;
@@ -42,12 +41,12 @@ public class Account {
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    private LocalDateTime CreatedDate;
+    private LocalDateTime createdDate;
 
 
     @UpdateTimestamp
     @Column(nullable = false)
-    private LocalDateTime LastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)

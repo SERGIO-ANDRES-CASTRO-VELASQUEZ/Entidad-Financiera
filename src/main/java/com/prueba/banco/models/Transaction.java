@@ -5,30 +5,28 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
 @Table(name = "Transacciones")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TypeTransaction typeTransaction;
 
     @Column(nullable = false)
-    private TypeTransaction TypeTransaction;
-
-    @Column(nullable = false)
-    private Double amount;
+    private BigDecimal amount;
 
     @CreationTimestamp
-    @Column(nullable = false)
-    private LocalDateTime CreatedDate;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "origen_cuenta_id", nullable = true)

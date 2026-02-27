@@ -2,6 +2,7 @@ package com.prueba.banco.models;
 
 import com.prueba.banco.models.ENUMS.TypeIdentity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,42 +13,41 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name ="Clientes")
 public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TypeIdentity TypeIdentity;
+    private TypeIdentity typeIdentity;
 
     @Column(nullable = false, unique = true)
-    private Integer NumberIdentity;
+    private String numberIdentity;
 
     @Column(nullable = false)
-    private String FirstName;
+    private String firstName;
 
     @Column(nullable = false)
-    private String LastName;
+    private String lastName;
 
+    @Email
     @Column(nullable = false, unique = true)
-    private String Email;
+    private String email;
+
 
     @Column(nullable = false)
-    private Date BirthDate;
+    private Date birthDate;
 
     @CreationTimestamp
-    @Column(nullable = false)
-    private LocalDateTime CreatedDate;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdDate;
 
     @UpdateTimestamp
     @Column(nullable = false)
-    private LocalDateTime LastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @OneToMany( mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Account> accounts;
