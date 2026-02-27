@@ -8,6 +8,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,17 @@ public class Account {
 
 
     @Column(nullable = false, unique = true)
-    private Integer numberAccount;
+    private Long numberAccount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TypeState typeState;
 
     @Column(nullable = false)
-    private Double balance = 0.0;
+    private BigDecimal balance;
 
     @Column(nullable = false)
-    private Boolean GMFexempt = false;
+    private Boolean GMFexempt;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

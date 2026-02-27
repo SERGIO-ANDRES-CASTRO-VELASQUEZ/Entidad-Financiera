@@ -7,8 +7,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -39,7 +39,7 @@ public class Customers {
 
 
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

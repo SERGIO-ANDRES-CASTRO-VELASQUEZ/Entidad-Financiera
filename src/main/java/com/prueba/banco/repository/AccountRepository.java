@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account,Long> {
 
-    boolean existsByNumberAccount(Integer numberAccount);
+    boolean existsByNumberAccount(Long numberAccount);
 
-    Optional<Account> findByNumberAccount(Integer numberAccount);
+    Optional<Account> findByNumberAccount(Long numberAccount);
 
 }
